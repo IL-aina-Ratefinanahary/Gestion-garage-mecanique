@@ -9,18 +9,21 @@ class Facture {
 private:
 	int id;
 	std::string date_facture;
-	int status;
+	int status;		//0 sinon finalisee et 1 si finalisee 
 	double balance;
 	static int id_suivant;
+
+	Vehicule vehicule;
+	std::vector<ProduitFacture> produits;
 
 public:
 	Facture(std::string date_facture);
 	Facture(Client client, std::string date);
 	Facture(Client client, Vehicule vehicule, std::string date);
-	void ajouter_produit(ProduitFacture produit);
-	void ajouter_produit(Produit produit, int quantite);
+	void ajouter_produit(const ProduitFacture& produit);
+	void ajouter_produit(Produit* produit, int quantite);
 	void afficher_facture();
-	double claculer_balance();
+	double calculer_balance();
 	void finaliser_facture();
 	void enregistrer_facture();
 

@@ -10,6 +10,8 @@ private:
 	std::string type;
 	static int id_suivant;
 
+public:
+
 	//getters
 	int get_id() const;
 	std::string get_plaque() const;
