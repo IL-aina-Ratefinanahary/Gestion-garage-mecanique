@@ -12,9 +12,9 @@ private:
 
 public:
 	Produit(std::string titre, double prix);
-	void calculer_prix();
-	void afficher();
-	char get_type_produit();
+	virtual double calculer_prix();
+	virtual void afficher();
+	virtual char get_type_produit();
 
 	//getters
 	int get_id() const;

@@ -10,6 +10,8 @@ private:
 	std::string phone;
 	static int id_suivant;
 
+public:
+
 	// getters
 	int get_id() const;
 	std::string get_nom() const;

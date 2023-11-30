@@ -8,9 +8,10 @@ private:
 	int quantite;
 	double prix_total;
 	static int id_suivant;
+	Produit* produit;	//relation d'association
 
 public:
-	ProduitFacture(Produit produit, int quantite);
+	ProduitFacture(Produit* produit, int quantite);
 	void afficher_produit();
 
 	//getters
