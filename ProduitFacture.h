@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Produit.h"
+
 
 class ProduitFacture {
 private:
@@ -12,7 +12,7 @@ private:
 
 public:
 	ProduitFacture(Produit* produit, int quantite);
-	void afficher_produit();
+	void afficher_produit() const;
 
 	//getters
 	int get_id() const;
