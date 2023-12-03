@@ -5,10 +5,11 @@
 class Service : public Produit {
 private:
 	std::string description;
-	double temps_d_execution;
+	double temps_d_execution;<
+	//double prix_heure;
 
 public:
-	Service(std::string titre, double prix, double temps_d_execution);
+	Service(std::string titre, /*double prix_heure */, double temps_d_execution);
 
 	//getters
 	std::string get_description() const;
