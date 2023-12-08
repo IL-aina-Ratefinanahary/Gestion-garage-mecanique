@@ -4,7 +4,9 @@ using namespace std;
 
 #include "Piece.h"
 
-Piece::Piece(std::string titre, double prix, int quantite_en_depot){ titre(titre), prix(prix), quantite_en_depot(quantite_en_depot) }
+Piece::Piece(std::string titre, double prix, int quantite_en_depot) :Produit(titre, prix) {
+	this->quantite_en_depot = quantite_en_depot;
+}
 
 void Piece::ajouter_piece_depot(int quantite) {
 	quantite_en_depot+=quantite;
@@ -19,24 +21,24 @@ void Piece::soustraire_piece_depot(int quantite) {
 }
 
 //override Produit calculer_prix()
-double Piece::calculer_prix() const override {
-	return prix;
+double Piece::calculer_prix() {
+	return get_prix();
 }
 
 //override Produit afficher()
-void Piece::afficher() const override {
-	cout << "Piece : " << titre << ", $ " << prix << ", En depot : " << quantite_en_depot << endl;
+void Piece::afficher() {
+	cout << "Piece : " << get_nom() << ", $ " << calculer_prix() << ", En depot : " << quantite_en_depot << endl;
 }
 
 //override Produit get_type_produit() 
-char Piece::get_type_produit() const override {
+char Piece::get_type_produit() {
 	return 'P'; // P pour piece
 }
 
 //getters
 int Piece::get_quantite_en_depot() const {
-	return quantite_en_depot;
+	return this->quantite_en_depot;
 }
 
 //setters
-void Piece::set_quantite_en_depot(int quantite_en_depot) { quantite_en_depot(quantite_en_depot) }
+void Piece::set_quantite_en_depot(int quantite_en_depot) { this->quantite_en_depot = quantite_en_depot; }

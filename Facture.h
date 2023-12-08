@@ -1,8 +1,15 @@
 #pragma once
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <stdexcept>
+#include <sstream>
+
 #include "Vehicule.h"
 #include "Client.h"
 #include "ProduitFacture.h"
+#include "FactureFinaliseeException.h"
+#include "FacturePasFinaliseeException.h"
 
 
 class Facture {
@@ -13,19 +20,20 @@ private:
 	double balance;
 	static int id_suivant;
 
+	Client* client;	//pour justifier la relation d'association entre Client et Vehicule
 	Vehicule vehicule;
 	std::vector<ProduitFacture> produits;
 
 public:
 	Facture(std::string date_facture);
-	Facture(Client client, std::string date);
-	Facture(Client client, Vehicule vehicule, std::string date);
-	void ajouter_produit(const ProduitFacture& produit);
+	Facture(Client* client, std::string date);
+	Facture(Client* client, Vehicule* vehicule, std::string date);
+	void ajouter_produit(ProduitFacture& produit);
 	void ajouter_produit(Produit* produit, int quantite);
-	void afficher_facture();
-	double calculer_balance();
+	void afficher_facture() const;
+	double calculer_balance() const;
 	void finaliser_facture();
-	void enregistrer_facture();
+	void enregistrer_facture() const;
 
 	//getters
 	int get_id() const;

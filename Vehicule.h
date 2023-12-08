@@ -24,5 +24,5 @@ public:
 	void set_plaque(const std::string& plaque);
 	void set_modele(const std::string& modele);
 	void set_annee(const std::string& annee);
-	void set_typt(const std::string& type);
+	void set_type(const std::string& type);
 };

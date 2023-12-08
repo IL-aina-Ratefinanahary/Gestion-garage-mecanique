@@ -1,35 +1,41 @@
 #include <iostream>
-#include 'ProduitFacture.h'
+#include "ProduitFacture.h"
 
 using namespace std;
 
-//je ne sais pas si j'ai bien fait! A revoir
-ProduitFacture::ProduitFacture(Produit* produit, int quantite) {
-	produit(produit),
-	quantite(quantite),
-	prix_total(quantite * (produit->calculer_prix()));	//valeur de prix_total recalculer selon calculer_prix() du Produit produit
+
+ProduitFacture::ProduitFacture(Produit* produit, int quantite){
+	this->id=id_suivant++;
+	this->produit=produit;
+	this->quantite=quantite;
+	this->prix_total=quantite * (produit->calculer_prix());	//valeur du prix_total recalculee selon calculer_prix() du Produit produit
 }
 
 void ProduitFacture::afficher_produit() const {
-	cout << "Qte : " << quantite << " , Produit/Service : (" << produit->get_type_produit() << ") , Unitaire : " << produit->calculer_prix() << " , Total : " << prix_total<<endl;
+	cout << "Qte : " << quantite << " , Produit/Service : (" << produit->get_type_produit() << ") , Unitaire : " << produit->calculer_prix() << " , Total : " << prix_total <<endl;
 }
 
-/////////////surcharger l'operateur << pour avoir l'affichage voulue///////////////////////////
-
+// surcharge de l'operateur << pour avoir l'affichage voulue
+ostream& operator<<(std::ostream& os, const ProduitFacture& pf) {
+	os << pf.get_quantite() << " | " << pf.produit->get_type_produit() << " ("
+		<< (pf.produit->get_type_produit() == 'P' ? 'P' : 'S') << ") | "
+		<< pf.produit->calculer_prix() << " | " << pf.get_prix_total();
+	return os;
+}
 
 
 //getters
 int ProduitFacture::get_id() const {
-	return id;
+	return this->id;
 }
 int ProduitFacture::get_quantite() const {
-	return quantite;
+	return this->quantite;
 }
 double ProduitFacture::get_prix_total() const {
-	return prix_total;
+	return this->prix_total;
 }
 
 //setters
-void ProduitFacture::set_id(int id){ id(id) }
-void ProduitFacture::set_quantite(int quantite){ quantite(quantite) }
-void ProduitFacture::set_prix_total(double prix_total){ prix_total(prix_total) }
+void ProduitFacture::set_id(int id) { this->id = id; }
+void ProduitFacture::set_quantite(int quantite) { this->quantite = quantite; }
+void ProduitFacture::set_prix_total(double prix_total) { this->prix_total=prix_total; }

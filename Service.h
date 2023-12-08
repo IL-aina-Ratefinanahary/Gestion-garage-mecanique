@@ -5,11 +5,14 @@
 class Service : public Produit {
 private:
 	std::string description;
-	double temps_d_execution;<
-	//double prix_heure;
+	double temps_d_execution;
 
 public:
-	Service(std::string titre, /*double prix_heure */, double temps_d_execution);
+	Service(std::string titre,double prix, double temps_d_execution);
+
+	double calculer_prix() override;
+	void afficher() override;
+	char get_type_produit() override;
 
 	//getters
 	std::string get_description() const;
@@ -17,5 +20,5 @@ public:
 
 	//setters
 	void set_description(const std::string& description);
-	void set_temps_d_execution(const std::string& temps_d_execution);
+	void set_temps_d_execution(double temps_d_execution);
 };
