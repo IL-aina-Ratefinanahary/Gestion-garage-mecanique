@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include "Produit.h"
 
 class ProduitFacture {
 private:
@@ -13,6 +13,8 @@ private:
 public:
 	ProduitFacture(Produit* produit, int quantite);
 	void afficher_produit() const;
+	//Pour surcharger l'operateur <<
+	friend std::ostream& operator<<(std::ostream& os, const ProduitFacture& pf);
 
 	//getters
 	int get_id() const;
@@ -23,4 +25,9 @@ public:
 	void set_id(int id);
 	void set_quantite(int quantite);
 	void set_prix_total(double prix_total);
+
+	// Fonction membre pour obtenir l'objet produit associé
+	Produit* get_produit() const {
+		return produit;
+	}
 };

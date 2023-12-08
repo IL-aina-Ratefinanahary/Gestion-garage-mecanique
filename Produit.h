@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include 'ProduitFacture.h'
+
 
 class Produit {
 protected:
@@ -12,10 +12,11 @@ private:
 	double prix;
 
 public:
-	Produit(std::string titre, double prix); //Voir note de cours pour savoir comment faire avec ca?
-	virtual double calculer_prix() const = 0;
-	virtual void afficher() const =0;
-	virtual char get_type_produit() const =0;
+	virtual ~Produit() = default;
+	Produit(std::string titre, double prix);
+	virtual double calculer_prix();
+	virtual void afficher();
+	virtual char get_type_produit();
 
 	//getters
 	int get_id() const;

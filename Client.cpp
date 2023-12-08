@@ -1,19 +1,20 @@
 #include<iostream>
+#include "Client.h"
 
 using namespace std;
 
 // getters
 int Client::get_id() const {
-	return id;
+	return this->id;
 }
 string Client::get_nom() const{
-	return nom;
+	return this->nom;
 }
 string Client::get_adresse() const {
-	return adresse;
+	return this->adresse;
 }
 string Client::get_phone() const {
-	return phone;
+	return this->phone;
 }
 
 //setters

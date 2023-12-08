@@ -1,27 +1,28 @@
 #include <iostream>
+#include "Vehicule.h"
 
 using namespace std;
 
 //getters
 int Vehicule::get_id() const {
-	return id;
+	return this->id;
 }
 string Vehicule::get_plaque() const {
-	return plaque;
+	return this->plaque;
 }
 string Vehicule::get_modele() const {
-	return modele;
+	return this->modele;
 }
 string Vehicule::get_annee() const {
-	return annee;
+	return this->annee;
 }
 string Vehicule::get_type() const {
-	return type;
+	return this->type;
 }
 
 //setters
-void Vehicule::set_id(int id) { id(id) }
-void Vehicule::set_plaque(const std::string& plaque) { plaque(plaque) }
-void Vehicule::set_modele(const std::string& modele) { modele(modele) }
-void Vehicule::set_annee(const std::string& annee) { annee(annee) }
-void Vehicule::set_typt(const std::string& type) { type(type) }
+void Vehicule::set_id(int id) { this->id = id; }
+void Vehicule::set_plaque(const std::string& plaque) { this->plaque = plaque; }
+void Vehicule::set_modele(const std::string& modele) { this->modele=modele; }
+void Vehicule::set_annee(const std::string& annee) { this->annee = annee; }
+void Vehicule::set_type(const std::string& type) { this->type=type; }
