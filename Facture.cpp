@@ -18,10 +18,10 @@ Facture::Facture(Client* client, std::string date)
     : id(id_suivant++), date_facture(date), status(0), balance(0.0), client(client) {}
 
 Facture::Facture(Client* client, Vehicule* vehicule, std::string date)
-    : id(id_suivant++), date_facture(date), status(0), balance(0.0), client(client), vehicule(*vehicule) {}
+    : id(id_suivant++), date_facture(date), status(0), balance(0.0), client(client), vehicule(vehicule) {}
 
 
-void Facture::ajouter_produit(ProduitFacture& produit) {
+void Facture::ajouter_produit(ProduitFacture* produit) {
     //Lancement de l'exception si la facture est finalisee
     if (status == 1) {
         throw FactureFinaliseeException();
@@ -30,14 +30,14 @@ void Facture::ajouter_produit(ProduitFacture& produit) {
 }
 
 void Facture::ajouter_produit(Produit* produit, int quantite) {
-    ProduitFacture produitFacture(produit, quantite);
+    ProduitFacture* produitFacture= new ProduitFacture(produit, quantite);
     produits.push_back(produitFacture);
 }
 
 double Facture::calculer_balance() const{
     double total = 0.0;
     for (const auto& produit : produits) {
-        total += produit.get_prix_total();
+        total += produit->get_prix_total();
     }
     return total;
 }
@@ -51,12 +51,12 @@ void Facture::afficher_facture() const {
     cout << "Client: " << client->get_nom() << endl;
     cout << "Adresse: " << client->get_adresse() << endl;
     cout << "Phone: " << client->get_phone() << endl;
-    cout << "Vehicule: " << vehicule.get_modele() << "| Plaque: " << vehicule.get_plaque() << endl;
+    cout << "Vehicule: " << vehicule->get_modele() << "| Plaque: " << vehicule->get_plaque() << endl;
 
     cout << "------------------------------------------------------------" << endl;
     cout << "Qte | Produit / Service | Unitaire | Total" << endl;
     for (const auto& produit : produits) {
-        produit.afficher_produit();
+        produit->afficher_produit();
     }
 
     cout << "------------------------------------------------------------" << endl;
@@ -72,8 +72,8 @@ void Facture::finaliser_facture() {
     // Mettre à jour la quantité en soustrayant la quantité vendue pour chaque Pièce
     for (auto& pf : produits) {
         // Vérifiez si c'est une pièce pour mettre à jour la quantité en soustrayant la quantité vendue
-        if (auto piece = dynamic_cast<Piece*>(pf.get_produit())){ 
-            piece->soustraire_piece_depot(pf.get_quantite()); 
+        if (auto piece = dynamic_cast<Piece*>(pf->get_produit())){ 
+            piece->soustraire_piece_depot(pf->get_quantite()); 
         }
     }
 
@@ -103,15 +103,15 @@ void Facture::enregistrer_facture() const {
 
         file << "Phone: " << client->get_phone() << endl;
 
-        file << "Vehicule: " << vehicule.get_modele() << "| Plaque: " << vehicule.get_plaque() << endl;
+        file << "Vehicule: " << vehicule->get_modele() << "| Plaque: " << vehicule->get_plaque() << endl;
 
         file << "------------------------------------------------------------" << endl;
 
         file << "Qte | Produit / Service | Unitaire | Total" << endl;
 
         for (const auto& pf : produits) {
-            std::cout << pf.get_quantite() << " | " << pf.get_produit()->get_type_produit() << " | "
-                << pf.get_produit()->calculer_prix() << " | " << pf.get_prix_total() << "\n";
+            std::cout << pf->get_quantite() << " | " << pf->get_produit()->get_type_produit() << " | "
+                << pf->get_produit()->calculer_prix() << " | " << pf->get_prix_total() << "\n";
         }
 
         file << "------------------------------------------------------------" << endl;
@@ -169,3 +169,15 @@ void Facture::set_balance(double balance)
 {
     this->balance=balance;
 }
+//Setters client et vehicule pour TODO
+void Facture::set_client(Client* client)
+{
+    this->client = client;
+}
+
+void Facture::set_vehicule(Vehicule* vehicule)
+{
+    this->vehicule = vehicule;
+}
+
+

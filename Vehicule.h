@@ -11,6 +11,10 @@ private:
 	static int id_suivant;
 
 public:
+	//Constructeur pour TODO
+	Vehicule(const std::string& plaque, const std::string& modele,
+		const std::string& annee, const std::string& type);
+
 
 	//getters
 	int get_id() const;
