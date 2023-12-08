@@ -3,6 +3,15 @@
 
 using namespace std;
 
+//constructeur
+Vehicule::Vehicule(const std::string& plaque, const std::string& modele,
+	const std::string& annee, const std::string& type) {
+	this->plaque = plaque;
+	this->modele = modele;
+	this->annee = annee;
+	this->type = type;
+}
+
 //getters
 int Vehicule::get_id() const {
 	return this->id;

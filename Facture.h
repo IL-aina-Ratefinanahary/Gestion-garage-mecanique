@@ -20,15 +20,15 @@ private:
 	double balance;
 	static int id_suivant;
 
-	Client* client;	//pour justifier la relation d'association entre Client et Vehicule
-	Vehicule vehicule;
-	std::vector<ProduitFacture> produits;
+	Client* client;	
+	Vehicule* vehicule;
+	std::vector<ProduitFacture*> produits;
 
 public:
 	Facture(std::string date_facture);
 	Facture(Client* client, std::string date);
 	Facture(Client* client, Vehicule* vehicule, std::string date);
-	void ajouter_produit(ProduitFacture& produit);
+	void ajouter_produit(ProduitFacture* produit);
 	void ajouter_produit(Produit* produit, int quantite);
 	void afficher_facture() const;
 	double calculer_balance() const;
@@ -46,4 +46,8 @@ public:
 	void set_date_facture(const std::string& date_facture);
 	void set_status(int status);
 	void set_balance(double balance);
+
+	// Méthodes setter pour attribuer un client et un véhicule "TODO"
+	void set_client(Client* client);
+	void set_vehicule(Vehicule* vehicule);
 };

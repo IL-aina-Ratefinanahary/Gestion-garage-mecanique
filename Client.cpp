@@ -3,6 +3,14 @@
 
 using namespace std;
 
+//constructeur
+Client::Client(const std::string& nom, const std::string& adresse, const std::string& phone)
+{
+	this->nom = nom;
+	this->adresse = adresse;
+	this->phone = phone;
+}
+
 // getters
 int Client::get_id() const {
 	return this->id;

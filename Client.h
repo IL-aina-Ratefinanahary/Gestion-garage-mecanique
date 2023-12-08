@@ -11,6 +11,9 @@ private:
 	static int id_suivant;
 
 public:
+	// Constructeur a utiliser dans TODO
+	Client(const std::string& nom, const std::string& adresse, const std::string& phone);
+
 
 	// getters
 	int get_id() const;
