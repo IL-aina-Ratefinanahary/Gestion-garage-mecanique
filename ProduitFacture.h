@@ -1,5 +1,8 @@
-#pragma once
+#ifndef PRODUITFACTURE_H
+#define PRODUITFACTURE_H
+
 #include <iostream>
+#include <iomanip>
 #include "Produit.h"
 
 class ProduitFacture {
@@ -8,11 +11,15 @@ private:
 	int quantite;
 	double prix_total;
 	static int id_suivant;
-	Produit* produit;	//relation d'association
+	Produit* produit;	//relation d'association avec la classe Produit
 
 public:
+	// Constructeur de ProduitFacture initialisant les attributs avec un Produit et une quantité
 	ProduitFacture(Produit* produit, int quantite);
+
+	// Méthode pour afficher les détails du ProduitFacture
 	void afficher_produit() const;
+
 	//Pour surcharger l'operateur <<
 	friend std::ostream& operator<<(std::ostream& os, const ProduitFacture& pf);
 
@@ -31,3 +38,6 @@ public:
 		return produit;
 	}
 };
+
+#endif // !PRODUITFACTURE_H
+

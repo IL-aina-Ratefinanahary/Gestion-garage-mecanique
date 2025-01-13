@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PRODUIT_H
+#define PRODUIT_H
+
 #include <iostream>
 
 
@@ -12,7 +14,7 @@ private:
 	double prix;
 
 public:
-	virtual ~Produit() = default;
+	virtual ~Produit() = default;	// Destructeur
 	Produit(std::string titre, double prix);
 	virtual double calculer_prix();
 	virtual void afficher();
@@ -28,3 +30,5 @@ public:
 	void set_nom(const std::string& nom);
 	void set_prix(double prix);
 };
+
+#endif // !PRODUIT_H

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef FACTURE_H
+#define FACTURE_H
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -20,16 +22,21 @@ private:
 	double balance;
 	static int id_suivant;
 
-	Client* client;	
+	Client* client;
 	Vehicule* vehicule;
 	std::vector<ProduitFacture*> produits;
 
 public:
-	Facture(std::string date_facture);
-	Facture(Client* client, std::string date);
+	// Constructeurs
+	Facture(std::string date_facture);	
+	Facture(Client* client, std::string date);	
 	Facture(Client* client, Vehicule* vehicule, std::string date);
+
+	// Méthodes pour ajouter des produits à la facture
 	void ajouter_produit(ProduitFacture* produit);
 	void ajouter_produit(Produit* produit, int quantite);
+
+	// Méthodes pour afficher et gérer la facture
 	void afficher_facture() const;
 	double calculer_balance() const;
 	void finaliser_facture();
@@ -51,3 +58,6 @@ public:
 	void set_client(Client* client);
 	void set_vehicule(Vehicule* vehicule);
 };
+
+#endif // !FACTURE_H
+

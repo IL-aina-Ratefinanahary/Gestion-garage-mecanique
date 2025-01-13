@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VEHICULE_H
+#define VEHICULE_H
+
 #include <iostream>
 
 class Vehicule {
@@ -30,3 +32,6 @@ public:
 	void set_annee(const std::string& annee);
 	void set_type(const std::string& type);
 };
+
+#endif // !VEHICULE_H
+

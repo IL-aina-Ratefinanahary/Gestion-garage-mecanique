@@ -1,8 +1,10 @@
-#pragma once
+#ifndef CLIENT_H
+#define CLIENT_H
+
 #include <iostream>
 #include "Vehicule.h"
 
-class Client{
+class Client {
 private:
 	int id;
 	std::string nom;
@@ -27,3 +29,5 @@ public:
 	void set_adresse(const std::string& adresse);
 	void set_phone(const std::string& phone);
 };
+
+#endif // !CLIENT_H

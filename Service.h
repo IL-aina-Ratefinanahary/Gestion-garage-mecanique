@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SERVICE_H
+#define SERVICE_H
+
 #include <iostream>
 #include "Produit.h"
 
@@ -8,8 +10,10 @@ private:
 	double temps_d_execution;
 
 public:
-	Service(std::string titre,double prix, double temps_d_execution);
+	// Constructeur pour initialiser un service avec un titre, un prix et une durée d'exécution
+	Service(std::string titre, double prix, double temps_d_execution);
 
+	// Méthodes héritées de la classe Produit
 	double calculer_prix() override;
 	void afficher() override;
 	char get_type_produit() override;
@@ -22,3 +26,6 @@ public:
 	void set_description(const std::string& description);
 	void set_temps_d_execution(double temps_d_execution);
 };
+
+#endif // !SERVICE_H
+
